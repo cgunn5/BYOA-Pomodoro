@@ -4,20 +4,24 @@ class PomodoroTimer {
         this.totalTime = 30 * 60;
         this.isRunning = false;
         this.timerId = null;
+        this.isWorkMode = true;
         
         // DOM elements
         this.timeDisplay = document.querySelector('.time-display');
         this.startBtn = document.getElementById('start');
         this.pauseBtn = document.getElementById('pause');
         this.resetBtn = document.getElementById('reset');
-        this.modeBtns = document.querySelectorAll('.mode-btn');
+        this.modeIcon = document.querySelector('.mode-toggle i');
+        this.breakDuration = document.querySelector('.break-duration');
+        this.breakBtns = document.querySelectorAll('.break-btn');
         
         // Bind event listeners
         this.startBtn.addEventListener('click', () => this.start());
         this.pauseBtn.addEventListener('click', () => this.pause());
         this.resetBtn.addEventListener('click', () => this.reset());
-        this.modeBtns.forEach(btn => {
-            btn.addEventListener('click', () => this.changeMode(btn));
+        this.modeIcon.addEventListener('click', () => this.toggleMode());
+        this.breakBtns.forEach(btn => {
+            btn.addEventListener('click', () => this.setBreakDuration(btn));
         });
         
         // Initialize display
@@ -50,15 +54,28 @@ class PomodoroTimer {
         this.updateDisplay();
     }
     
-    changeMode(btn) {
-        // Update active button
-        this.modeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    toggleMode() {
+        this.isWorkMode = !this.isWorkMode;
         
-        // Update timer
+        // Update timer duration
+        this.totalTime = this.isWorkMode ? 30 * 60 : 5 * 60;
+        
+        // Update UI
+        this.modeIcon.className = this.isWorkMode ? 'fas fa-moon' : 'fas fa-sun';
+        this.breakDuration.style.display = this.isWorkMode ? 'none' : 'flex';
+        
+        // Reset timer with new duration
+        this.reset();
+    }
+    
+    setBreakDuration(btn) {
         const minutes = parseInt(btn.dataset.time);
         this.totalTime = minutes * 60;
         this.reset();
+        
+        // Update active state of buttons
+        this.breakBtns.forEach(b => b.style.opacity = '0.8');
+        btn.style.opacity = '1';
     }
     
     updateDisplay() {

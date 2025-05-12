@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 't26-carbon';
+    src: url('fonts/Carbon Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: t26-carbon, monospace;
+    font-style: normal;
+    font-weight: 400;
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.timer {
+    margin-bottom: 3rem;
+}
+
+.time-display {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: t26-carbon, monospace;
+}
+
+#start {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#pause {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#reset {
+    background-color: #ffde38;
+    color: white;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.mode-btn {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.mode-btn.active {
+    background-color: #a7a7a7;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0);
+} 
